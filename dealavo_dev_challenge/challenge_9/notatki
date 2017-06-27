@@ -1,0 +1,4 @@
+1. tworzymy tablicę sh, dodajemy w niej do poprzedniego wyniku różnicę wysokości i k
+2. uzupełniamy tablicę suffixuw
+3. uzupełniamy tablicę prefixuw
+4. obliczamy najlepszą wartość

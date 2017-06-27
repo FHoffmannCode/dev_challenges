@@ -1,0 +1,4 @@
+1. przygotować dane - kto, ile
+2. przygotować warstwy - gdy ile==1
+3.do wyniku dodajemy minimum z 2*l, w
+4.'zdejmujemy' warstwy

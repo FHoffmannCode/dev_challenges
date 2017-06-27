@@ -1,0 +1,5 @@
+1. używamy struktury danych deque z collections
+2. sprawdzamy czy na lewym końcu temp min nie jest wyższe niż aktualne wyciągnięte, jeśli tak wyrzucamy
+3. dodajemy obecne minimum
+4. sprawdzamy czy prawa strona nie przekracza temp max, jeśli tak to liczymy wynik
+5. na koniec powtarzamy jeszcze raz

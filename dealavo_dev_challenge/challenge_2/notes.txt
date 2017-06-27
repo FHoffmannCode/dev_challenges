@@ -1,0 +1,9 @@
+dijkstre trzeba znać na blachę, podobnie jak odwracanie grafu, opcjonalnie nauczyć się implementować priority q.
+rozwiązanie:
+1. procesy przedstawić jako graf
+2. przyjebać dijskstrę na normalnym grafie i na odwróconym, złoto jako sors (nie zapomnieć o tym, że na odwróconym grafie
+przed sprawdzeniem ceny trzeba odwrócić kolejność node'ów).
+3. każda najkrótsza ścieżka do danego metalu to cena jego uzyskania.
+4. sprawdzamy dla każdego metalu całkowitą cenę jego przemytu tj. cenę przemiany w złoto i odwrotnie + bodadeg
+5. wybieramy najmniejszą wartość
+6. profit
