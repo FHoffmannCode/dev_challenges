@@ -1,4 +1,4 @@
-with open('example.txt') as data:
+with open('example.in') as data:
     station_count = int(data.readline().strip())
     fuels = []
     distances = []

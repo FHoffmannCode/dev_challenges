@@ -1,47 +1,41 @@
-with open('example.txt') as data:
-    n = int(data.readline().strip())
-    masses = [int(m) for m in data.readline().strip().split()]
-    order_a = [int(a) for a in data.readline().strip().split()]
-    order_b = [int(b) for b in data.readline().strip().split()]
-    elephants_to_masses = {n + 1: masses[n] for n in range(n)}
-
-permutation = {}
+from dealavo_dev_challenge.challenge import Challenge
 
 
-for i in range(n):
-    permutation[order_b[i]] = order_a[i]
+class Challenge_8(Challenge):
+    def solve_challenge(self, filename):
 
-odw = [False for _ in range(n)]
-c = 0
-cycles = []
-for i in range(n):
-    if not odw[i]:
-        c += 1
-        x = i + 1
-        cycles.append([])
-        while not odw[x]:
-            odw[x] = True
-            cycles[c - 1].append(x)
-            x = permutation[x]
+        with open(filename) as data:
+            n = int(data.readline().strip())
+            masses = [int(m) for m in data.readline().strip().split()]
+            order_a = [int(a) for a in data.readline().strip().split()]
+            order_b = [int(b) for b in data.readline().strip().split()]
+            elephants_to_masses = {n + 1: masses[n] for n in range(n)}
 
-cycles_sums = []
-cycles_mins = []
-min_val = float('inf')
-for i in range(c):
-    cycles_sums.append(0)
-    cycles_mins.append(float('inf'))
-    for e in cycles[i]:
-        cycles_sums[i] += elephants_to_masses[e]
-        cycles_mins[i] = min([cycles_mins[i], elephants_to_masses[e]])
-    min_val = min(min_val, cycles_mins[i])
+        permutation = {}
+        for i in range(n):
+            permutation[order_b[i]] = order_a[i]
 
-w = 0
-method_1 = []
-method_2 = []
-for i in range(c):
-    method_1.append(cycles_sums[i] + (len(cycles[i]) - 2) * cycles_mins[i])
-    method_2.append(cycles_sums[i] + cycles_mins[i] + (len(cycles) + 1) * min_val)
-    w += min(method_1[i], method_2[i])
+        cycles = []
+        odw = [False for _ in range(n)]
+        for i in range(n):
+            if not odw[i]:
+                x = i + 1
+                cycles.append([])
+                while not odw[x - 1]:
+                    odw[x - 1] = True
+                    cycles[-1].append(x)
+                    x = permutation[x]
+        cycles_mins = []
+        cycles_sums = []
+        for cycle in cycles:
+            procced_cycle = map(lambda e: elephants_to_masses[e], cycle)
+            cycles_sums.append(sum(procced_cycle))
+            cycles_mins.append(min(procced_cycle))
+        global_min = min(cycles_mins)
 
-print w
-
+        w = 0
+        for i in range(len(cycles)):
+            method_1 = cycles_sums[i] + (len(cycles[i]) - 2) * cycles_mins[i]
+            method_2 = cycles_sums[i] + cycles_mins[i] + (len(cycles[i]) + 1) * global_min
+            w += min([method_1, method_2])
+        return w

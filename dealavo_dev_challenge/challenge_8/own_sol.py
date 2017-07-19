@@ -1,4 +1,4 @@
-with open('example.txt') as data:
+with open('slo1.in') as data:
     n = int(data.readline().strip())
     masses = [int(m) for m in data.readline().strip().split()]
     order_a = [int(a) for a in data.readline().strip().split()]
@@ -15,8 +15,8 @@ for i in range(n):
     if not odw[i]:
         x = i + 1
         cycles.append([])
-        while not odw[x]:
-            odw[x] = True
+        while not odw[x - 1]:
+            odw[x - 1] = True
             cycles[-1].append(x)
             x = permutation[x]
 cycles_mins = []
